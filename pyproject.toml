@@ -7,6 +7,13 @@ authors = ["James Salvatore <jimmy.c.salvatore@gmail.com>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 pydocstyle = "^6.1.1"
+numpy = "^1.22.0"
+pandas = "^1.3.5"
+altair = "^4.2.0"
+matplotlib = "^3.5.1"
+seaborn = "^0.11.2"
+fastapi = "^0.70.1"
+uvicorn = "^0.16.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"
@@ -25,6 +32,7 @@ tox = "^3.24.4"
 isort = "^5.10.1"
 pydocstyle = "^6.1.1"
 invoke = "^1.6.0"
+ipykernel = "^6.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
