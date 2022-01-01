@@ -1,7 +1,7 @@
 """Generate signals for the sensor."""
 
 import time
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 import numpy as np
 import requests as req
@@ -14,10 +14,6 @@ class Signal:
     signal_1: float
     signal_2: float
     signal_3: float
-
-    def as_tuple(self) -> tuple[float, float, float]:
-        """Return signals as tuple."""
-        return (self.signal_1, self.signal_2, self.signal_3)
 
 
 def clamp(val: float, minimum: float, maximum: float) -> float:
@@ -59,7 +55,7 @@ def generate_random_signal() -> Signal:
 
 
 def generate(
-    endpoint: str = "http://127.0.0.1:8000/signal/", secs_between_signals: float = 1
+    endpoint: str = "http://127.0.0.1:8000/signals/", secs_between_signals: float = 1
 ) -> None:
     """
     Generate random signals.
@@ -68,16 +64,15 @@ def generate(
 
     Parameters
     ----------
-    endpoint : Optional[str], default http://127.0.0.1:8000/signal/
+    endpoint : Optional[str], default http://127.0.0.1:8000/signals/
         Endpoint to POST to.
     secs_between_signals : Optional[float], default 1
         Seconds to wait between each POST.
     """
     while True:
-        data = generate_random_signal().as_tuple()
-        q_string = "/".join(map(str, data))
-        print(f"POSTing {endpoint + q_string}...")
-        req.post(endpoint + q_string)
+        signal = asdict(generate_random_signal())
+        print(signal)
+        req.post(url=endpoint, json=signal)
         time.sleep(secs_between_signals)
 
 

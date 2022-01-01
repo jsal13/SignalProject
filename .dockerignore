@@ -1,0 +1,6 @@
+__pycache__
+.github
+.git
+.mypy_cache
+.pytest_cache
+docs

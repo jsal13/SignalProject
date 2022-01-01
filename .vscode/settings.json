@@ -20,5 +20,17 @@
     "python.sortImports.args": [
         "--profile",
         "black"
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "0.0.0.0",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "SensorDockerPG",
+            "database": "postgres",
+            "username": "postgres",
+            "password": "x"
+        }
     ]
 }
