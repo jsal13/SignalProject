@@ -71,9 +71,9 @@ class DBConnection:
         except psycopg2.OperationalError as error:
             raise error
 
-    def _check_connection(self, max_retries: int = 3) -> bool:
+    def _attempt_connection(self, max_retries: int = 3) -> bool:
         """
-        Check the connection to the db.
+        Attempt to connect to the to the db.
 
         Parameters
         ----------
@@ -95,7 +95,7 @@ class DBConnection:
                 connected = True
             except psycopg2.OperationalError:
                 pass
-            time.sleep(1)
+            time.sleep(5)
         return connected
 
     def is_connected(self) -> bool:
@@ -135,7 +135,7 @@ class SensorDB:
         self.dbconn = dbconn
 
         # Connect to the db.
-        self.dbconn.connect()
+        self.dbconn._attempt_connection()
 
     def insert_signal(self, signal: Signal) -> None:
         """Insert `signal` data into DB."""
@@ -168,11 +168,11 @@ async def add_signal(signal: Signal) -> None:
     sensorDB.insert_signal(signal)
 
 
-@app.get("/sensors/1")
+@app.get("/sensors/")
 async def query_sensor() -> dict[Any, Any]:
-    """Get signal `1` data from the db."""
+    """Get all signal data from the db."""
     if dbc.is_connected():
-        q = "select * from signals where sensor=1"
+        q = "select * from signals"
         results = dbc.query(q)
         return {"data": results.to_dict("records")}
 

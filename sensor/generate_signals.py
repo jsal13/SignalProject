@@ -37,10 +37,12 @@ def clamp(val: float, minimum: float, maximum: float) -> float:
 
 def generate_random_signal() -> Signal:
     """Generate a random Signal."""
-    signal_1 = clamp(50 + 20 * np.random.randn(), 0, 100)
+    signal_1 = (
+        5 * np.sin(2 * np.pi * np.random.rand()) + np.sin(np.pi * np.random.rand()) ** 2
+    )
     signal_2 = (
         2 * signal_1
-        + 10 * np.random.randn()
+        + 4 * np.random.randn()
         + np.random.choice(
             a=np.array([0, -60, 60]), p=np.array([0.995, 0.0025, 0.0025])
         )
