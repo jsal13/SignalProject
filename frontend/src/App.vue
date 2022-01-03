@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-md-8 offset-md-2">
+        <DataChart />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
         <DataTable />
       </div>
     </div>
@@ -10,10 +15,11 @@
 
 <script>
 import DataTable from "./components/DataTable.vue";
+import DataChart from "./components/DataChart.vue";
 
 export default {
   name: "App",
-  components: { DataTable },
+  components: { DataTable, DataChart },
 };
 </script>
 

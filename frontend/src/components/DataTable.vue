@@ -1,27 +1,23 @@
 <template>
   <div class="data-table">
-    <div class="card" style="width: 18rem;">
-      <!-- <table class="table" id="datatable">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Product Title</th>
-            <th>Product Price</th>
-            <th>Created On</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in data" :key="item.id">
-            <td>{{item.datetime}}</td>
-            <td>{{item.value}}</td>
-          </tr>
-        </tbody>
-      </table>-->
-      {{ data }}
-      <div class="card-body">
-        <h5 class="card-title">Data Table</h5>
-      </div>
-    </div>
+    <table class="table" id="datatable">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Datetime</th>
+          <th>Sensor</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in data" :key="row.id">
+          <td>{{row.id}}</td>
+          <td>{{row.datetime}}</td>
+          <td>{{row.sensor}}</td>
+          <td>{{row.value}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -37,14 +33,14 @@ import $ from "jquery";
 export default {
   name: "DataTable",
   mounted() {
-    axios.get("http://127.0.0.1:8000/sesnors/1").then((response) => {
-      this.data = response.data;
+    axios.get("http://localhost:8000/sensors/1").then((response) => {
+      this.data = response.data["data"];
       $("#datatable").DataTable();
     });
   },
   data: function () {
     return {
-      data: [],
+      data: {},
     };
   },
 };
