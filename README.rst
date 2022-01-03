@@ -28,3 +28,7 @@ will set up the docker images.  **Important Note: if you re-run this, you may ne
 will automatically begin to generate signals every few seconds.  If the API and DB are running, the DB should be updated with the new signal values.
 
 .. _``long format``: https://en.wikipedia.org/wiki/Wide_and_narrow_data
+
+Things To Do:
+=============
+- [ ] Logger.

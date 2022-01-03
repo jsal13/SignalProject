@@ -73,6 +73,7 @@ good-names = [
   "c",
   "conn",
   "cur",
+  "q",
 ]
 
 [tool.pylint.messages_control]
@@ -96,6 +97,9 @@ no_implicit_reexport = true
 # For strinct mypy...
 disallow_untyped_defs = true
 
+[[tool.mypy.overrides]]
+module = ["pandas"]
+ignore_missing_imports = true
 
 # ========================================
 # PYDANTIC-MYPY

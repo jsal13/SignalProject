@@ -10,9 +10,11 @@ services:
     volumes:
       - ./sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile_API
-    ports:
-      - "8000:80"
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_API
+  #   environment:
+  #     IS_DOCKERIZED=True
+  #   ports:
+  #     - "8000:80"

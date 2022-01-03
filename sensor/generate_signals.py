@@ -55,7 +55,7 @@ def generate_random_signal() -> Signal:
 
 
 def generate(
-    endpoint: str = "http://127.0.0.1:8000/signals/", secs_between_signals: float = 1
+    endpoint: str = "http://localhost:8000/signals/", secs_between_signals: float = 1
 ) -> None:
     """
     Generate random signals.
@@ -64,7 +64,7 @@ def generate(
 
     Parameters
     ----------
-    endpoint : Optional[str], default http://127.0.0.1:8000/signals/
+    endpoint : Optional[str], default http://localhost:8000/signals/
         Endpoint to POST to.
     secs_between_signals : Optional[float], default 1
         Seconds to wait between each POST.

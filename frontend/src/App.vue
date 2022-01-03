@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <p>Hello!</p>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <DataTable />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import DataTable from "./components/DataTable.vue";
+
 export default {
   name: "App",
+  components: { DataTable },
 };
 </script>
 
