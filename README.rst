@@ -17,7 +17,7 @@ How Do I Use This?
 
 1. The API and DB are dockerized.  Running
 
-    docker-compose --build up
+    docker-compose up --build
 
 will set up the docker images.  **Important Note: if you re-run this, you may need to delete the previous volume created by docker.**  Check this with ``docker volume ls`` to see if the previous run created a volume --- if so, remove it.
 

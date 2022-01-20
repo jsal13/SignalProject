@@ -56,6 +56,32 @@ def generate_random_signal() -> Signal:
     )
 
 
+def generate_n_random_signals(n: int) -> list[Signal]:
+    """Generate ``n`` random signals."""
+    return [generate_random_signal() for _ in range(n)]
+
+
+def post_n_random_signals(
+    n: int,
+    endpoint: str = "http://localhost:8000/signals_batch/",
+) -> None:
+    """
+    Generate ``n`` random signals and post a batch to the endpoint.
+
+    POST ``n`` random signals to `endpoint` with delay `secs_between_signals`.
+
+    Parameters
+    ----------
+    endpoint : Optional[str], default http://localhost:8000/signals_batch/
+        Endpoint to POST to.
+    secs_between_signals : Optional[float], default 1
+        Seconds to wait between each POST.
+    """
+    signals = generate_n_random_signals(n)
+    signals_json = [asdict(signal) for signal in signals]
+    req.post(url=endpoint, json=signals_json)
+
+
 def generate(
     endpoint: str = "http://localhost:8000/signals/", secs_between_signals: float = 1
 ) -> None:
@@ -79,4 +105,4 @@ def generate(
 
 
 if __name__ == "__main__":
-    generate(secs_between_signals=3)
+    post_n_random_signals(10)
